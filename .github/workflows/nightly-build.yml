@@ -25,3 +25,16 @@ jobs:
 
       - name: Build
         run: go build -v ./...
+        continue-on-error: true
+
+      - name: Create issue on build failure
+        if: ${{ failure() }}
+        uses: peter-evans/create-issue@v3
+        with:
+          title: "Nightly Flow Go build failed"
+          body: |
+            "The build with the latest flow-go failed. Please investigate and fix the issue. cc @janezpodhostnik2 @j10100012
+            
+            Workflow Run: ${{ github.run_number }}
+            Commit: ${{ github.sha }}
+            Ref: ${{ github.ref }}"
