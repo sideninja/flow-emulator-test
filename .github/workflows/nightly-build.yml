@@ -1,6 +1,7 @@
 name: Nightly Builds
-
-on: workflow_dispatch
+on:
+  schedule:
+    - cron: "0 0 * * *"
 
 env:
   GO_VERSION: '1.19.2'
@@ -33,7 +34,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: Nightly Flow Go build failed
           body: |
-            The build with the latest flow-go failed. Please investigate and fix the issue. cc @janezpodhostnik2 @j10100012
+            The build with the latest flow-go failed. Please investigate and fix the issue.
+
             Workflow Run: ${{ github.run_number }}
             Commit: ${{ github.sha }}
             Ref: ${{ github.ref }}
+          assignees: j1010001
