@@ -30,7 +30,7 @@ jobs:
       - name: create an issue
         uses: dacbd/create-issue-action@main
         with:
-          token: ${{ github.token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           title: Nightly Flow Go build failed
           body: |
             The build with the latest flow-go failed. Please investigate and fix the issue. cc @janezpodhostnik2 @j10100012
